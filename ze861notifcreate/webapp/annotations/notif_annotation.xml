@@ -1,0 +1,172 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZPM_E861_WO_SRV/$metadata">
+		<edmx:Include Alias="Metadata" Namespace="ZPM_E861_WO_SRV"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470968/UI.xml?api=v2">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ze861wocreate.annotations.wo_annotation.ZPM_E861_WO_SRV">
+			<Annotations Target="Metadata.Notif/OrderTyp">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="CollectionPath" String="OrderTypVHSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="OrderTyp"/>
+									<PropertyValue Property="ValueListProperty" String="OrderTyp"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="OrderTypDesc"/>
+									<PropertyValue Property="ValueListProperty" String="Desc"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.Notif/Priority">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="CollectionPath" String="PriorityVHSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Priority"/>
+									<PropertyValue Property="ValueListProperty" String="Type"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="PriorityDesc"/>
+									<PropertyValue Property="ValueListProperty" String="Text"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.Notif/EqpNo">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="CollectionPath" String="EqpVHSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="EqpNo"/>
+									<PropertyValue Property="ValueListProperty" String="EqpNo"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="FuncLoc"/>
+									<PropertyValue Property="ValueListProperty" String="FuncLoc"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="EqpDesc"/>
+									<PropertyValue Property="ValueListProperty" String="Desc"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="FuncLocDesc"/>
+									<PropertyValue Property="ValueListProperty" String="FuncLocDesc"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.Notif/FuncLoc">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="CollectionPath" String="FuncLocVHSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="FuncLoc"/>
+									<PropertyValue Property="ValueListProperty" String="FuncLoc"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="FuncLocDesc"/>
+									<PropertyValue Property="ValueListProperty" String="Desc"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.Notif/Code">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="CollectionPath" String="FailureCodeVHSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Code"/>
+									<PropertyValue Property="ValueListProperty" String="Code"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="CodeDesc"/>
+									<PropertyValue Property="ValueListProperty" String="Desc"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="CodeGrp"/>
+									<PropertyValue Property="ValueListProperty" String="CodeGrp"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+			</Annotations>
+			<Annotations Target="Metadata.Notif/Priority">
+				<Annotation Term="Common.Text" Path="PriorityDesc"/>
+				<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+			</Annotations>
+			<Annotations Target="Metadata.Notif/EqpNo">
+				<Annotation Term="Common.Text" Path="EqpDesc"/>
+				<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextSeparate"/>
+			</Annotations>
+			<Annotations Target="Metadata.Notif/FuncLoc">
+				<Annotation Term="Common.Text" Path="FuncLocDesc"/>
+				<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextSeparate"/>
+			</Annotations>
+			<Annotations Target="Metadata.Notif/Code">
+				<Annotation Term="Common.Text" Path="CodeDesc"/>
+				<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+			</Annotations>
+			<Annotations Target="Metadata.FailureCodeVH/Code">
+				<Annotation Term="Common.Text" Path="Desc"/>
+				<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+			</Annotations>
+			<Annotations Target="Metadata.Notif/OrderTyp">
+				<Annotation Term="Common.Text" Path="OrderTypDesc"/>
+				<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextSeparate"/>
+			</Annotations>
+			<Annotations Target="Metadata.OrderTypVH/OrderTyp">
+				<Annotation Term="Common.Text" Path="Desc"/>
+				<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextSeparate"/>
+			</Annotations>
+			<Annotations Target="Metadata.PriorityVH/Type">
+				<Annotation Term="Common.Text" Path="Text"/>
+				<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+			</Annotations>
+			<Annotations Target="Metadata.Notif/LongTxt">
+				<Annotation Term="UI.MultiLineText" Bool="true"/>
+			</Annotations>
+			<Annotations Target="Metadata.EqpVH/Plant">
+				<Annotation Term="Common.FilterDefaultValue" String="3000"/>
+			</Annotations>
+			<Annotations Target="Metadata.FuncLocVH/Plant">
+				<Annotation Term="Common.FilterDefaultValue" String="3000"/>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

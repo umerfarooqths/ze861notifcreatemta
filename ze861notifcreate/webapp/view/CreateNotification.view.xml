@@ -1,0 +1,267 @@
+<mvc:View
+	controllerName="zpm.e861.wo.ze861notifcreate.controller.CreateNotification"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" 
+	xmlns:m="sap.m" 
+	xmlns:semantic="sap.f.semantic"
+	xmlns:layout="sap.ui.layout" 
+	xmlns:f="sap.ui.layout.form"
+	xmlns:smartField="sap.ui.comp.smartfield" 
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	
+	<semantic:SemanticPage
+		id="mySemanticPage"
+		headerPinnable="true"
+		toggleHeaderOnTitleClick="true"
+		preserveHeaderStateOnScroll="false"
+		titleAreaShrinkRatio="1:1.6:1.6"
+		showFooter="{user>/bAuthorized}">
+
+		<!-- Title Heading-->
+		<semantic:titleHeading>
+			<Title id="idTitleTtl" text="{view>/workListTitle}" />
+		</semantic:titleHeading>
+		
+		<semantic:headerContent>
+			<layout:HorizontalLayout
+				id="idHeaderHL"
+				allowWrapping="true">
+				<m:GenericTag
+					id="idCodeGrpGT"
+					text="{CodeGrp}" 
+					status="Information" 
+					design="StatusIconHidden" 
+					class="sapUiTinyMarginEnd"/>
+				<m:GenericTag
+					id="idPlantGT"
+					text="{user>/PlantName}" 
+					status="Information"
+					design="StatusIconHidden"
+					class="sapUiTinyMarginEnd">
+					<ObjectNumber number="{user>/Plant}"/>
+				</m:GenericTag>
+				<m:GenericTag
+					id="idPriorityGT"
+					text="{parts: [{path: 'Priority'}, {path: 'PriorityDesc'}], formatter: '.formatter.colonate'}" 
+					status="Information"
+					design="StatusIconHidden"
+					class="sapUiTinyMarginEnd">
+				</m:GenericTag>
+			</layout:HorizontalLayout>
+		</semantic:headerContent>
+
+		<!-- Content -->
+		<semantic:content>
+			<VBox width="100%" class="sapUiNoContentPadding sapUiNoMargin" id="idFormVB">
+				<f:Form 
+					id="idWorkOrderForm"
+					class="sapUiNoMarginTop sapUiNoContentPadding"
+					editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout
+							labelSpanXL="12"
+							labelSpanL="12"
+							labelSpanM="12"
+							labelSpanS="12"
+							adjustLabelSpan="false"
+							emptySpanXL="0"
+							emptySpanL="0"
+							emptySpanM="0"
+							emptySpanS="0"
+							columnsXL="1"
+							columnsL="1"
+							columnsM="1"
+							singleContainerFullSize="false" />
+					</f:layout>
+			
+					<f:FormContainer>
+						<f:FormElement>
+							<f:label>
+								<smartField:SmartLabel id="idShortTxtLbl" labelFor="idShortTxtField" required="true"/>
+							</f:label>
+							<smartField:SmartField 
+								id="idShortTxtField" 
+								value="{ShortTxt}"
+								change="onPropertyChange">
+								<smartField:layoutData>
+									<layout:GridData span="XL4 L4 M12 S12" />
+								</smartField:layoutData>
+							</smartField:SmartField>
+						</f:FormElement>
+						<f:FormElement>
+							<f:label>
+								<smartField:SmartLabel id="idLongTxtLbl" labelFor="idLongTxtField" />
+							</f:label>
+							<smartField:SmartField 
+								id="idLongTxtField" 
+								value="{LongTxt}"
+								change="onPropertyChange"
+								app:multiLineSettings="{cols: 150, rows: 2}">
+								<smartField:layoutData>
+									<layout:GridData span="XL4 L4 M12 S12" />
+								</smartField:layoutData>
+							</smartField:SmartField>
+						</f:FormElement>
+						<f:FormElement>
+							<f:label>
+								<Label id="idFuncLocLbl" text="{i18n>functionalLocation}"/>
+							</f:label>
+							<Input
+								id="idFuncLocInp"
+								value="{parts: [{path: 'FuncLocDesc'}, {path: 'FuncLocId'}], formatter: '.formatter.removeLeadingZeros2WithParenthesis'}"
+								valueState="None"
+								valueStateText=""
+								change="onPropertyChange"
+								showValueHelp="true"
+								valueHelpOnly="true"
+								valueHelpRequest="onOpenFuncLocVHDialog">
+								<layoutData>
+									<layout:GridData span="XL4 L4 M10 S8" />
+								</layoutData>
+							</Input>
+							<HBox
+								id="idFuncLocActionsHB"
+								width="100%"
+								class="sapUiNoContentPadding sapUiNoMargin">
+								<Button
+									id="idFuncLocBarCodeBtn"
+									width="2.6rem"
+									press="onBarCodePressFuncLoc" 
+									tooltip="{i18n>scanFunctionalLocation}"
+									icon="sap-icon://bar-code"
+									class="sapUiTinyMarginEnd">
+								</Button>
+								<Button
+									id="idFuncLocHierBtn"
+									width="2.6rem"
+									press="onPressSelectFunctionalLocation" 
+									tooltip="{i18n>SelectFuncLocFromHierarchy}"
+									icon="sap-icon://functional-location">
+								</Button>
+								<layoutData>
+									<layout:GridData span="XL1 L1 M2 S4" />
+								</layoutData>
+							</HBox>
+						</f:FormElement>
+						<f:FormElement>
+							<f:label>
+								<Label id="idEquipmentLbl" text="{i18n>equipment}"/>
+							</f:label>
+							<Input
+								id="idEquipmentInp"
+								value="{parts: [{path: 'EqpDesc'}, {path: 'EqpNo'}], formatter: '.formatter.removeLeadingZeros2WithParenthesis'}"
+								valueState="None"
+								valueStateText=""
+								change="onPropertyChange"
+								showValueHelp="true"
+								valueHelpOnly="true"
+								valueHelpRequest="onOpenEquipmentVHDialog">
+								<layoutData>
+									<layout:GridData span="XL4 L4 M10 S8" />
+								</layoutData>
+							</Input>
+							<HBox
+								id="idEquipmentActionsHB"
+								width="100%"
+								class="sapUiNoContentPadding sapUiNoMargin">
+								<Button
+									id="idEquipmentBarCodeBtn"
+									width="2.6rem"
+									press="onBarCodePressEquip" 
+									tooltip="{i18n>scanEquipment}"
+									class="sapUiTinyMarginEnd"
+									icon="sap-icon://bar-code">
+								</Button>
+								<Button
+									id="idEquipmentHierBtn"
+									width="2.6rem"
+									press="onPressSelectEquipment" 
+									tooltip="{i18n>SelectEqpFromHierarchy}"
+									icon="sap-icon://functional-location">
+								</Button>
+								<layoutData>
+									<layout:GridData span="XL1 L1 M2 S4" />
+								</layoutData>
+							</HBox>
+						</f:FormElement>
+						<f:FormElement>
+							<f:label>
+								<Label id="idCodeLbl" text="{i18n>code}"/>
+							</f:label>
+							<Input
+								id="idCodeInp"
+								value="{parts: [{path: 'CodeDesc'}, {path: 'Code'}], formatter: '.formatter.parenthesis'}"
+								valueState="None"
+								valueStateText=""
+								showValueHelp="true"
+								change="onCodeChange"
+								valueHelpOnly="true"
+								valueHelpRequest="onOpenCodeVHDialog"
+								editable="false">
+								<layoutData>
+									<layout:GridData span="XL4 L4 M12 S12" />
+								</layoutData>								
+							</Input>
+						</f:FormElement>
+					</f:FormContainer>
+				</f:Form>
+				
+				<UploadCollection
+					id="idUploadCollection"
+					maximumFilenameLength="50"
+					maximumFileSize="50"
+					multiple="false"
+					fileDeleted="onFileDeleted"
+					selectionChange="onSelectionChange"
+					fileRenamed="onFileRenamed"
+					change="onUploadAttachmentsChange"
+					uploadComplete="onUploadAttachmentsComplete"
+					beforeUploadStarts="onBeforeUploadAttachmentsStarts"
+					uploadTerminated="onUploadAttachmentsTerminated"
+					uploadUrl="/ze861notifcreatemta.zpme861woze861notifcreate/sap/opu/odata/sap/ZPM_E861_WO_SRV/AttachmentSet"
+					typeMissmatch="onUploadAttachmentMismatch"
+					filenameLengthExceed="onUploadAttachmentMismatch"
+					fileSizeExceed="onUploadAttachmentMismatch"
+					class="sapUiSmallMarginBeginEnd"
+					numberOfAttachmentsText="{i18n>attachments}"
+					showSeparators="All"
+					uploadEnabled="true"
+					uploadButtonInvisible="false"
+					instantUpload="false"
+					visible="{user>/bAuthorized}">
+					<toolbar>
+						<OverflowToolbar id="idOTBUploadCollection">
+							<Title id="attachmentTitle" text="{i18n>attachments}"/>
+							<ToolbarSpacer />
+							<UploadCollectionToolbarPlaceholder />
+						</OverflowToolbar>
+					</toolbar>
+				</UploadCollection>
+			</VBox>
+		</semantic:content>
+
+		<semantic:footerMainAction>
+			<semantic:FooterMainAction
+				id="idSaveBtn"
+				text="{i18n>save}" 
+				press="onSavePress"
+				enabled="{view>/enableSave}"/>
+		</semantic:footerMainAction>
+		
+		<!-- Custom Footer Content-->
+		<semantic:footerCustomActions>
+			<Button 
+				id="idBtnClear"
+				text="{i18n>clear}"
+				press="onClearPress"
+				tooltip="{i18n>clearFuncLocAndEqp}"/>
+			<Button 
+				id="idBtnCancel"
+				text="{i18n>cancel}"
+				press="onCancelPress"/>
+		</semantic:footerCustomActions>
+
+	</semantic:SemanticPage>
+</mvc:View>

@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:micro="sap.suite.ui.microchart">
+	<Dialog id="idFuncLocDlg" title="{i18n>functionalLocations}" draggable="true" contentHeight="50%" stretch="true" afterClose="onFuncLocAfterClose">
+		<content>
+			<MessageStrip
+				id="idMultipleRecordsFoundMS"
+				text="{i18n>multipleRecordsFound}"
+				type="Information"
+				showIcon="true"
+				showCloseButton="true">
+			</MessageStrip>
+			<Toolbar id="idSearchFieldTB" height="10%">
+				<SearchField id="FuncLocSearch" width="100%" value="{/barCode}" search="onBarCodeVHFuncLocDialogSearch" class="sapUiTinyMarginTopBottom"/>
+			</Toolbar>
+
+			<List id="FuncLocList" items="{path: '/'}">
+				<StandardListItem
+					id="idDescSLI"
+					press="onSelectBarCodeFuncLocVHDialog" 
+					title="{Desc}" 
+					description="{FuncLoc}" 
+					type="Active"/>
+			</List>
+		</content>
+		<buttons>
+			<!--<Button text="{i18n>Confirm}"/>-->
+			<Button id="idCancelBtn" text="{i18n>cancel}" press="onBarCodeFuncLocVHDialogCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

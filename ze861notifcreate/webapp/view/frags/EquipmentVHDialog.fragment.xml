@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="idSelectEquipmentSD"
+		noDataText="{i18n>noEquipmentFound}"
+		title="{i18n>selectEquipment}"
+		search=".onEquipmentVHDialogSearch"
+		confirm=".onEquipmentVHDialogClose"
+		cancel=".onEquipmentVHDialogClose"
+		showClearButton="true"
+		items="{
+			path: '/EqpVHSet',
+			sorter: [{
+		        path: 'FuncLoc'
+		    }, {
+		        path: 'EqpNo'
+		    }]
+		}">
+		<StandardListItem
+			id="idDescSLI"
+			title="{Desc}"
+			description="{EqpNo}"
+			info="{= ${path: 'FuncLoc', formatter: '.formatter.showIfPropertyAvailable'} ? 'FLoc: ' + ${FuncLoc} : ''}"
+			type="Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

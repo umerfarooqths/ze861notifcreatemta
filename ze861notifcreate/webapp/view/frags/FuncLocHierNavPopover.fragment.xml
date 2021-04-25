@@ -1,0 +1,55 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="idSelectDlg" title="{i18n>Select} {path: 'view>/hierarchyFilter', formatter: '.formatter.getTypeTitle'}" 
+		stretch="{device>/system/phone}" 
+		contentHeight="80%" 
+		contentWidth="60%"
+		draggable="true">
+		<content>
+			<NavContainer
+				id="navCon">
+				<Page
+					id="master"
+					title="{path: 'Type', formatter: '.formatter.getTypeDesc'}{parts: [{path: 'Desc'}, {path: 'ID'}], formatter: '.formatter.removeLeadingZeros2WithParenthesis'}"
+					showNavButton="{view>/bShowBackButton}"
+					navButtonPress=".onPressNavBackFuncLoc">
+					<List 
+						id="idFuncLocHierList" 
+						items="{
+							path: 'FuncLocStrucToChildSet'
+						}" 
+						mode="None"
+						noDataText="{i18n>noRecordsFound}"
+						press=".onPressNavigateFuncLoc"
+						growing="true" 
+						growingScrollToLoad="true">
+						<items>
+							<StandardListItem
+								id="idDescSLI"
+								title="{Desc}"
+								description="{path: 'ID', formatter: '.formatter.removeLeadingZeros'}"
+								icon="{path: 'Type', formatter: '.formatter.getTypeIcon'}"
+								iconDensityAware="false"
+								iconInset="false"
+								type="Navigation"
+								press=".onPressNavFuncLoc">
+							</StandardListItem>
+						</items>
+					</List>
+				</Page>
+			</NavContainer>
+		</content>
+		<beginButton>
+			<Button
+				id="idSelectBtn"
+				text="{i18n>Select}" 
+				type="Emphasized"
+				press=".onFuncLocHierPopoverAddPress" 
+				visible="{view>/bFuncHierPopoverAddButtonVisibility}"/>
+		</beginButton>
+		<endButton>
+			<Button id="idCancelBtn" text="{i18n>cancel}" press="onFuncLocHierPopoverCancelPress" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

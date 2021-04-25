@@ -1,0 +1,81 @@
+_schema-version: "3.2"
+ID: ze861notifcreatemta
+version: 0.0.5
+modules:
+- name: ze861notifcreatemta-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: uaa_ze861notifcreatemta
+    parameters:
+      service-key:
+        name: uaa_ze861notifcreatemta-key
+  - name: ze861notifcreatemta_html_repo_host
+    parameters:
+      service-key:
+        name: ze861notifcreatemta_html_repo_host-key
+  - name: ze861notifcreatemta-destination-service
+    parameters:
+      content-target: true
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: ze861notifcreatemta_ze861notifcreatemta_html_repo_host
+          ServiceInstanceName: ze861notifcreatemta-html5-app-host-service
+          ServiceKeyName: ze861notifcreatemta_html_repo_host-key
+          sap.cloud.service: ze861notifcreatemta
+        - Authentication: OAuth2UserTokenExchange
+          Name: ze861notifcreatemta_uaa_ze861notifcreatemta
+          ServiceInstanceName: ze861notifcreatemta-xsuaa-service
+          ServiceKeyName: uaa_ze861notifcreatemta-key
+          sap.cloud.service: ze861notifcreatemta
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: ze861notifcreatemta_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: ze861notifcreatemta_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - ze861notifcreate-content.zip
+      name: ze861notifcreate
+      target-path: resources/
+- name: ze861notifcreate
+  type: html5
+  path: ze861notifcreate
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: ze861notifcreatemta-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-name: ze861notifcreatemta-destination-service
+    service-plan: lite
+- name: ze861notifcreatemta_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: ze861notifcreatemta-html5-app-host-service
+    service-plan: app-host
+- name: uaa_ze861notifcreatemta
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: ze861notifcreatemta-xsuaa-service
+    service-plan: application
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install

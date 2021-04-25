@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="idSelectCodeSD"
+		noDataText="{i18n>noCodeFound}"
+		title="{i18n>selectCode}"
+		search=".onCodeVHDialogSearch"
+		confirm=".onCodeVHDialogClose"
+		cancel=".onCodeVHDialogClose"
+		showClearButton="true"
+		items="{
+			path: '/FailureCodeVHSet'
+		}">
+		<StandardListItem
+			id="idDescSLI"
+			title="{Desc}"
+			description="{Code}"
+			type="Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

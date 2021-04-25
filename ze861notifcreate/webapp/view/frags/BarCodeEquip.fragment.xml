@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:micro="sap.suite.ui.microchart">
+	<Dialog id="idEquipmentDlg" title="{i18n>equipment}" draggable="true" contentHeight="50%" stretch="true" afterClose="onAfterClose">
+		<content>
+			<MessageStrip
+				id="idSingleAssignmentMS"
+				text="{i18n>singleAssignment}"
+				type="Warning"
+				showIcon="true"
+				showCloseButton="true">
+			</MessageStrip>
+			<Toolbar id="idSearchFieldTB" height="10%">
+				<SearchField id="EqpSearch" width="100%" value="{/barCode}" search="onBarCodeVHEquipDialogSearch" class="sapUiTinyMarginTopBottom"/>
+			</Toolbar>
+			<List items="{path: '/'}" id="EquipList" >
+				<StandardListItem
+					id="idDescSLI"
+					press="onSelectBarCodeEquipVHDialog" 
+					title="{Desc}" 
+					description="{EqpNo}" 
+					info="{= ${path: 'FuncLoc', formatter: '.formatter.showIfPropertyAvailable'} ? 'FLoc: ' + ${FuncLoc} : ''}" 
+					type="Active"/>
+			</List>
+		</content>
+		<buttons>
+			<!--<Button text="{i18n>Confirm}"/>-->
+			<Button id="idCancelBtn" text="{i18n>cancel}" press="onBarCodeEquipVHDialogCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
